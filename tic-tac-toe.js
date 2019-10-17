@@ -1,35 +1,38 @@
-
 setGameBoard= () => {
     var turn = true;
     var button = document.getElementsByClassName('btn');
     var divs = document.getElementById('board').querySelectorAll('div');
 
-    button[0].addEventListener('click', function() {
-        for (var i = 0 ; i<divs.length ; i++){
-            divs[i].className = "square"
-            divs[i].textContent = ""
-        }
-    })
     for (var i = 0 ; i < divs.length; i++){
-        divs[i].className = 'square';
+        divs[i].classList.add('square');
         divs[i].addEventListener('click',function() {
             if(turn){
-                this.className = 'square X'
-                this.textContent="X"
-                turn = !turn
+                this.classList.add('X');
+                this.textContent='X';
+                turn = !turn;
             } else {
-                this.className = 'square O'
-                this.textContent="O"
-                turn = !turn
+                this.classList.add('O');
+                this.textContent='O';
+                turn = !turn;
             }
             
         })
+
+        divs[i].addEventListener('mouseover' , function () { this.classList.add('hover')})
+        divs[i].addEventListener('mouseleave' , function (){ this.classList.remove('hover')})
     }
 }
 
 resetGame = () => {
-    
-    button.addEventListener('click',)
+    var button = document.getElementsByClassName('btn');
+    var divs = document.getElementById('board').querySelectorAll('div');
+
+    button[0].addEventListener('click', function() {
+        for (var i = 0 ; i<divs.length ; i++){
+            divs[i].className = 'square' ;
+            divs[i].textContent = '';
+        }
+    })
 }
 
 playermoves = (item) => {
@@ -40,4 +43,5 @@ playermoves = (item) => {
 }
 window.onload = () => {   
  setGameBoard() 
+ resetGame()
 }
